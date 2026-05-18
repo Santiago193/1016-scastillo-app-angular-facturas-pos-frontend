@@ -1,4 +1,4 @@
-![Status](https://img.shields.io/badge/🚧_Proyecto_Actual-En_Progreso-orange?style=for-the-badge)
+![Status](https://img.shields.io/badge/🚧_Current proyect in  Proggress-orange?style=for-the-badge)
 
 # 🏪 Tienda Frontend — POS & Invoicing System
 
