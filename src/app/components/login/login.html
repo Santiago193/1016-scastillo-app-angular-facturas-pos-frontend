@@ -1,0 +1,86 @@
+<div class="min-h-screen bg-slate-100 flex items-center justify-center p-6 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+  <div class="w-full max-w-md">
+    
+    <!-- Tarjeta Principal -->
+    <div class="bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden">
+      
+      <!-- Banner Superior Decorativo -->
+      <div class="h-2 bg-blue-600"></div>
+
+      <div class="p-8 pt-10">
+        <div class="text-center mb-10">
+          <h2 class="text-3xl font-bold text-slate-800 tracking-tight">Bienvenido</h2>
+          <p class="text-slate-500 mt-2 font-medium">Gestiona tu tienda con eficiencia</p>
+        </div>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-5">
+          
+<!-- Campo Usuario -->
+<div class="space-y-1.5">
+  <label class="text-sm font-bold text-slate-700 ml-1">Usuario</label>
+  <div class="flex overflow-hidden rounded-xl border border-slate-200 bg-slate-50 focus-within:ring-4 focus-within:ring-blue-500/10 focus-within:border-blue-500 transition-all">
+    
+    <!-- Cuadrado del Icono -->
+    <div class="flex items-center justify-center w-12 bg-slate-100 border-r border-slate-200">
+      <span class="material-icons text-slate-400 text-[20px]">person</span>
+    </div>
+
+    <!-- Input -->
+    <input 
+      type="text" 
+      formControlName="username" 
+      placeholder="Ingresa tu usuario"
+      class="flex-1 bg-transparent px-4 py-3 outline-none text-slate-700 placeholder:text-slate-400"
+    >
+  </div>
+</div>
+
+<!-- Campo Contraseña -->
+<div class="space-y-1.5 mt-4">
+  <label class="text-sm font-bold text-slate-700 ml-1">Contraseña</label>
+  <div class="flex overflow-hidden rounded-xl border border-slate-200 bg-slate-50 focus-within:ring-4 focus-within:ring-blue-500/10 focus-within:border-blue-500 transition-all">
+    
+    <!-- Cuadrado del Icono -->
+    <div class="flex items-center justify-center w-12 bg-slate-100 border-r border-slate-200">
+      <span class="material-icons text-slate-400 text-[20px]">lock</span>
+    </div>
+
+    <!-- Input -->
+    <input 
+      type="password" 
+      formControlName="password" 
+      placeholder="••••••••"
+      class="flex-1 bg-transparent px-4 py-3 outline-none text-slate-700 placeholder:text-slate-400"
+    >
+  </div>
+</div>
+
+          <!-- Manejo de Errores con @if -->
+          @if (errorMessage) {
+            <div class="flex items-center gap-3 bg-red-50 border border-red-100 p-4 rounded-2xl animate-shake">
+              <span class="material-icons text-red-500 text-lg">error_outline</span>
+              <p class="text-red-600 text-sm font-semibold">{{ errorMessage }}</p>
+            </div>
+          }
+
+          <!-- Botón de Acción -->
+          <button 
+            type="submit" 
+            [disabled]="loginForm.invalid"
+            class="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white font-bold py-4 rounded-2xl shadow-lg shadow-blue-200 transition-all active:scale-[0.98] mt-4 flex items-center justify-center gap-2"
+          >
+            <span>Entrar al Sistema</span>
+            <span class="material-icons text-xl">login</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Footer de la Tarjeta -->
+      <div class="bg-slate-50 p-6 border-t border-slate-100 text-center">
+        <p class="text-slate-400 text-xs font-medium uppercase tracking-widest">
+          Santiago Castillo v1.0
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

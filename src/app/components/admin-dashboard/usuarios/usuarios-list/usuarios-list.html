@@ -1,0 +1,93 @@
+<div class="p-6 bg-white rounded-3xl shadow-sm border border-slate-200">
+  <div class="flex justify-between items-center mb-6">
+    <h2 class="text-2xl font-bold text-slate-800">Gestión de Usuarios</h2>
+    
+    <!-- Buscador -->
+    <div class="relative w-64">
+      <span class="material-icons absolute left-3 top-2.5 text-slate-400 text-sm">search</span>
+      <input 
+        type="text" 
+        [(ngModel)]="filtroNombre" 
+        placeholder="Buscar por nombre..."
+        class="w-full pl-10 pr-4 py-2 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+      />
+    </div>
+  </div>
+
+  <div class="overflow-x-auto">
+    <table class="w-full text-left border-collapse">
+      <thead>
+        <tr class="border-b border-slate-100 text-slate-400 text-sm uppercase tracking-wider">
+          <th class="px-4 py-3 font-semibold">Usuario</th>
+          <th class="px-4 py-3 font-semibold">Rol</th>
+          <!-- Nueva Columna de Password -->
+          <th class="px-4 py-3 font-semibold">Nueva Contraseña</th>
+          <th class="px-4 py-3 text-right font-semibold">Acciones</th>
+        </tr>
+      </thead>
+      <tbody class="text-slate-600">
+        @for (user of usuariosFiltrados(); track user.id) {
+          <tr class="border-b border-slate-50 hover:bg-slate-50 transition-colors">
+            <!-- Columna Usuario -->
+            <td class="px-4 py-4">
+              @if (usuarioEditando() === user.id) {
+                <input [(ngModel)]="user.username" class="border rounded px-2 py-1 outline-blue-500 w-full max-w-[150px]">
+              } @else {
+                <span class="font-medium text-slate-700">{{ user.username }}</span>
+              }
+            </td>
+
+            <!-- Columna Rol -->
+            <td class="px-4 py-4">
+              @if (usuarioEditando() === user.id) {
+                <select [(ngModel)]="user.role" class="border rounded px-2 py-1 outline-blue-500 bg-white">
+                  <option value="ADMIN">ADMIN</option>
+                  <option value="EMPLEADO">EMPLEADO</option>
+                </select>
+              } @else {
+                <span [class]="user.role === 'ADMIN' ? 'bg-purple-100 text-purple-700' : 'bg-blue-100 text-blue-700'"
+                      class="px-3 py-1 rounded-full text-xs font-bold">
+                  {{ user.role }}
+                </span>
+              }
+            </td>
+
+            <!-- Columna Contraseña (NUEVA) -->
+            <td class="px-4 py-4">
+              @if (usuarioEditando() === user.id) {
+                <input 
+                  type="password" 
+                  [(ngModel)]="$any(user).password"
+                  placeholder="Dejar vacío para no cambiar"
+                  class="border rounded px-2 py-1 outline-blue-500 w-full text-sm italic placeholder:text-slate-300"
+                >
+              } @else {
+                <span class="text-slate-300 tracking-widest text-xs">••••••••</span>
+              }
+            </td>
+
+            <!-- Columna Acciones -->
+            <td class="px-4 py-4 text-right">
+              @if (usuarioEditando() === user.id) {
+                <button (click)="guardarCambios(user)" class="text-green-600 hover:text-green-800 mr-3">
+                  <span class="material-icons">check_circle</span>
+                </button>
+                <button (click)="cancelarEdicion()" class="text-red-600 hover:text-red-800">
+                  <span class="material-icons">cancel</span>
+                </button>
+              } @else {
+                <button (click)="iniciarEdicion(user.id)" class="text-blue-600 hover:text-blue-800 transition-transform active:scale-90">
+                  <span class="material-icons text-[20px]">edit</span>
+                </button>
+              }
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="4" class="text-center py-10 text-slate-400">No se encontraron usuarios</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

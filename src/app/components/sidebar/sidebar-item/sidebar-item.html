@@ -1,0 +1,23 @@
+<nav class="flex-1 px-4 space-y-2 mt-4">
+    @for (option of menuOptions; track option.label) {
+    <!-- El filtro @if asegura que el Admin no vea el POS y el Empleado no vea Usuarios -->
+        @if (option.roles.includes(userRole || '')) {
+            <a [routerLink]="option.path" 
+            routerLinkActive="bg-blue-600 text-white"
+            class="flex items-center px-4 py-3 text-slate-300 hover:bg-slate-800 hover:text-white rounded-lg transition-all group">
+        
+            <!-- Ejemplo si usas una fuente de iconos (como Material Icons) -->
+            <span class="material-icons text-slate-400 group-hover:text-white">
+            {{ option.icon }}
+            </span>
+
+            <div class="ml-3 flex flex-col">
+            <span class="text-sm font-semibold leading-none">{{ option.label }}</span>
+            <span class="text-[10px] text-slate-500 mt-1 group-hover:text-slate-300">
+                {{ option.subLabel }}
+            </span>
+            </div>
+        </a>
+        }
+    }
+</nav>

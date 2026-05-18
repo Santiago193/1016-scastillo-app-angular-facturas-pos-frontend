@@ -1,0 +1,16 @@
+
+    <div class="flex flex-col relative w-screen">
+        
+    <app-sidebar></app-sidebar>
+
+    <!-- 2. EL CONTENIDO PRINCIPAL -->
+    <!-- Usamos ml-64 (margin left) para que el contenido 
+    empiece justo donde termina el menú fixed -->
+    <main class="flex-1 ml-64 p-8">
+        
+        <!-- Aquí es donde realmente van los componentes hijos -->
+        <router-outlet></router-outlet>
+        
+    </main>
+    </div>
+    

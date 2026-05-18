@@ -1,0 +1,84 @@
+<div class="p-6 bg-white rounded-3xl shadow-sm border border-slate-200">
+  <!-- Cabecera y Buscador -->
+  <div class="flex justify-between items-center mb-6">
+    <h2 class="text-2xl font-bold text-slate-800">Inventario</h2>
+    <input 
+      type="text" 
+      [ngModel]="filtro()" 
+      (ngModelChange)="filtro.set($event)"
+      placeholder="Buscar producto..."
+      class="pl-4 pr-4 py-2 rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-blue-500"
+    />
+  </div>
+
+  <div class="overflow-x-auto">
+    <table class="w-full text-left border-collapse">
+      <thead>
+        <tr class="text-slate-400 text-xs uppercase border-b border-slate-100">
+          <th class="px-4 py-3">Producto</th>
+          <th class="px-4 py-3 text-center">Stock</th>
+          <th class="px-4 py-3 text-right">P. Compra</th>
+          <th class="px-4 py-3 text-right">P. Venta</th>
+          <th class="px-4 py-3 text-center">Estado</th>
+          <th class="px-4 py-3 text-right">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (prod of productosFiltrados(); track prod.id) {
+          <tr class="border-b border-slate-50 hover:bg-slate-50" [class.opacity-50]="!prod.activo">
+            
+            <td class="px-4 py-4 font-bold text-slate-700">
+              @if (editandoId() === prod.id) {
+                <input [(ngModel)]="$any(prod).nombre" class="border rounded px-2 py-1 w-full">
+              } @else {
+                {{ prod.nombre }}
+              }
+            </td>
+
+            <td class="px-4 py-4 text-center">
+              @if (editandoId() === prod.id) {
+                <input type="number" [(ngModel)]="$any(prod).stock" class="border rounded px-2 py-1 w-16">
+              } @else {
+                {{ prod.stock }}
+              }
+            </td>
+
+            <!-- Corregido según imagen image_d2869d.png -->
+            <td class="px-4 py-4 text-right">
+              @if (editandoId() === prod.id) {
+                <input type="number" [(ngModel)]="$any(prod).precioCompra" class="border rounded px-2 py-1 w-20 text-right">
+              } @else {
+                ${{ prod.precioCompra }}
+              }
+            </td>
+
+            <td class="px-4 py-4 text-right">
+              @if (editandoId() === prod.id) {
+                <input type="number" [(ngModel)]="$any(prod).precioVenta" class="border rounded px-2 py-1 w-20 text-right">
+              } @else {
+                <span class="font-bold text-slate-900">${{ prod.precioVenta }}</span>
+              }
+            </td>
+
+            <td class="px-4 py-4 text-center">
+              <button (click)="toggleActivo(prod)" 
+                [class]="prod.activo ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'"
+                class="px-3 py-1 rounded-full text-xs font-bold uppercase">
+                {{ prod.activo ? 'Activo' : 'Inactivo' }}
+              </button>
+            </td>
+
+            <td class="px-4 py-4 text-right">
+              @if (editandoId() === prod.id) {
+                <button (click)="guardarCambios(prod)" class="text-green-600 mr-2"><span class="material-icons">save</span></button>
+                <button (click)="editandoId.set(null)" class="text-red-600"><span class="material-icons">close</span></button>
+              } @else {
+                <button (click)="editandoId.set(prod.id)" class="text-blue-600"><span class="material-icons">edit</span></button>
+              }
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

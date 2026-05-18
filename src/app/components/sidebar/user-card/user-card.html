@@ -1,0 +1,13 @@
+<div id="profile" class="px-6 py-10">
+    <p class="text-slate-500 text-xs">Welcome back,</p>
+    <a href="#" class="inline-flex space-x-2 items-center group">
+        <span class="shrink-0">
+            <img class="rounded-full w-8 h-8 border-2 border-slate-700 group-hover:border-blue-500 transition-colors" 
+                 [src]="userPhoto" 
+                 alt="User profile">
+        </span>
+        <span class="text-sm md:text-base font-bold text-slate-200 group-hover:text-white transition-colors">
+            {{ userName }}
+        </span>
+    </a>
+</div>
