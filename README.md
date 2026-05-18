@@ -1,5 +1,4 @@
-![Status](https://img.shields.io/badge/🚧_Current proyect in  Proggress-orange?style=for-the-badge)
-
+![Status](https://img.shields.io/badge/Status-Project_In_Progress-orange?style=flat-square&logo=git)
 # 🏪 Tienda Frontend — POS & Invoicing System
 
 > A modern **Point of Sale (POS)** and **Invoicing** web application built with **Angular 21** and **TailwindCSS 4**. Designed for retail stores in Ecuador, featuring role-based access control (Admin / Employee), real-time inventory management, and a streamlined checkout experience.
